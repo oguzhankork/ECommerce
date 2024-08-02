@@ -1,0 +1,12 @@
+﻿@model List<ECommerce.Model.Entities.Category>
+
+<ul class="navbar-nav">
+    @foreach (var item in Model)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-route-id="1" asp-controller="Product" asp-action="ProductsWithCategory">@item.CategoryName</a>
+        </li>
+       
+    }
+
+</ul>

@@ -1,0 +1,88 @@
+﻿@model List<ECommerce.Model.Entities.Order>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+
+    
+}
+@if (TempData["Result"] != null)
+{
+    <div>
+        <span>@TempData["Result"]</span>
+    </div>
+}
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Starter Page</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Starter Page</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Order Number</th>
+                            <th>Order Date</th>
+                            <th>Address</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ID</td>
+                                <td>@item.OrderNumber</td>
+                                <td>@item.CreatedDate</td>
+                                <td>@item.Address</td>
+                                <td>
+                                    <a class="btn btn-primary">Order Details</a>
+                                    <a class="btn btn-warning">Ship Detail </a>
+                                </td>
+                            </tr>
+                        }
+                        <partial name="_AdminLayoutInfoPartial" />
+                        <partial name="_AdminOrderTablePartial" />
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script src="~/adminTemplate/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="~/adminTemplate/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/adminTemplate/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+    <script src="~/adminTemplate/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/adminTemplate/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#orderTable").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#orderTable_wrapper .col-md-6:eq(0)');
+           
+        })
+    </script>
+} 

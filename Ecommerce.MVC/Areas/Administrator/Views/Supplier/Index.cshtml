@@ -1,0 +1,69 @@
+﻿@model List<SupplierViewModelAdmin>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<div>
+
+    <table class="table table-hover text-nowrap">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Company Name</th>
+                <th>Adress</th>
+                <th>Contact Name</th>
+                <th>Phone Number</th>
+                <th>Status</th>
+                <th>Is Active</th>
+                <th></th>
+                <th>
+                    <a href="/Administrator/Supplier/Create" class="btn btn-dark btn-md">Yeni Tedarikçi</a>
+                    <a href="/Administrator/Supplier/Active" class="btn btn-dark btn-md">Aktif Tedarikçiler</a>
+                    <a href="/Administrator/Supplier/Passive" class="btn btn-dark btn-md">Pasif Tedarikçiler</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.SupplierId</td>
+                    <td>@item.CompanyName</td>
+                    <td>@item.Address</td>
+                    <td>@item.ContactName</td>
+                    <td>@item.PhoneNumber</td>
+                    <td>
+                        @switch (item.Status)
+                        {
+                            case ECommerce.Model.Enums.DataStatus.INSERTED:
+                                <span>Eklenmiş</span>
+                                break;
+                            case ECommerce.Model.Enums.DataStatus.UPDATED:
+                                <span>Güncellenmiş</span>
+                                break;
+                            case ECommerce.Model.Enums.DataStatus.DELETED:
+                                <span>Silinmiş</span>
+                                break;
+
+                        }
+                    </td>
+                    <td>
+                        @{
+                            string result = item.IsActive ? "Aktif" : "Pasif";
+                            <span> @result </span>
+                        }
+                    </td>
+                    <td>
+                        <a href="~/Administrator/Supplier/Update/@item.SupplierId" class="btn btn-success btn-sm">Update</a>
+                        <a href="~/Administrator/Supplier/Destroy/@item.SupplierId" class="btn btn-danger btn-sm">Destroy</a>
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>
+

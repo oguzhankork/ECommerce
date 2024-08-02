@@ -1,0 +1,65 @@
+﻿@model ECommerce.Common.CartHelpers.Cart
+
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    decimal? toplamTutar = 0;
+}
+
+
+<h1 class="text-center">Sepetim</h1>
+<div class="row">
+    <div class="col-md-9">
+        <table class="table table-bordered">
+            <tr>
+                <th>UrunAdı</th>
+                <th>Birim Fiyat</th>
+                <th width="100">Adet</th>
+                <th>Ara Toplam</th>
+                <th></th>
+            </tr>
+
+
+
+            @foreach (var item in Model.MyCart)
+            {
+                toplamTutar += item.Value.SubTotal;
+                <tr>
+                    <td>@item.Value.ProductName</td>
+                    <td>@item.Value.UnitPrice</td>
+                    <td>
+                        <!--input değeri değiştiğinde fiyat bilgisi güncellenecek. (Js ile yapılacak)-->
+                        <input value="@item.Value.Quantity" type="number" id="quantity" class="form-control" name="quantity" />
+                    </td>
+                    <td>@item.Value.SubTotal</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm">Güncelle</button>
+                        <button class="btn btn-primary btn-sm">Kaldır</button>
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+    </div>
+    <div class="col-md-3">
+        <div class="col">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <div class="card-header py-3">
+                    <h4 class="my-0 fw-normal">Toplam Tutar</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">
+
+                        @toplamTutar
+                        <small class="text-body-secondary fw-light">/₺</small>
+                    </h1>
+                    <button type="button" class="w-100 btn btn-lg btn-outline-primary">Alışverişe Devam Et</button>
+                    <a  asp-action="CompleteCart" asp-controller="Home" type="button" class="w-100 btn btn-lg btn-outline-success">Ödeme Yap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,65 @@
+﻿@model List<ShipperViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Administrator/Views/Shared/_AdministratorLayout.cshtml";
+}
+
+<div class="mb-2">
+    <table class="table table-hover text-nowrap">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Company Name</th>
+                <th>Status</th>
+                <th>Is Active</th>
+                <th></th>
+                <th>
+                    <a href="/Administrator/Shipper/Create" class="btn btn-dark btn-md">Yeni Shipper</a>
+                    <a href="/Administrator/Shipper/Active" class="btn btn-dark btn-md">Aktif Shippers</a>
+                    <a href="/Administrator/Shipper/Passive" class="btn btn-dark btn-md">Pasif Shippers</a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.CompanyName</td>
+                    <td>
+                        @switch (item.Status)
+                        {
+                            case ECommerce.Model.Enums.DataStatus.INSERTED:
+                                <span>Eklenmiş</span>
+                                break;
+                            case ECommerce.Model.Enums.DataStatus.UPDATED:
+                                <span>Güncellenmiş</span>
+                                break;
+                            case ECommerce.Model.Enums.DataStatus.DELETED:
+                                <span>Silinmiş</span>
+                                break;
+
+                        }
+                    </td>
+                    <td>
+                        @{
+                            string result = item.IsActive ? "Aktif" : "Pasif";
+                            <span> @result </span>
+                        }
+                    </td>
+                    <td>
+                        <a href="~/Administrator/Shipper/Update/@item.Id" class="btn btn-success btn-sm">Update</a>
+                        <a href="~/Administrator/Shipper/Destroy/@item.Id" class="btn btn-danger btn-sm">Destroy</a>
+                        <a href="~/Administrator/Shipper/Details/@item.Id" class="btn btn-primary btn-sm">Details</a>
+                    </td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+

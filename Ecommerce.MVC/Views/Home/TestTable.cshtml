@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "TestTable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>Column 1</th>
+            <th>Column 2</th>
+            <th>Column 3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Data 1</th>
+            <th>Data 2</th>
+            <th>Data 3</th>
+        </tr>
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script src="~/adminTemplate/plugins/datatables/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#table").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        })
+    </script>
+} 
