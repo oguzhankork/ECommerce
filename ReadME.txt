@@ -1,11 +1,11 @@
 # Ecommerce Project
 
-- Code first yöntemi ile Ntier Katmanlı Mimari kullanılarak yazılacak.
-- Başlanıçte 3 katmandan meydana gelecek.
+- Code first yÃ¶ntemi ile Ntier KatmanlÄ± Mimari kullanÄ±larak yazÄ±lacak.
+- BaÅŸlanÄ±Ã§te 3 katmandan meydana gelecek.
 
-	- Model: Model katmanı dal katmanında varlıkları temsil eden Entity'leri barındıran katmandır.
-		- Base: Interface'den almış olduğu özellikleri bünyesine dahil eder.
-		- Entities: Veritabanında olmasını istediğimiz tabloları temsil eder.
+	- Model: Model katmanÄ± dal katmanÄ±nda varlÄ±klarÄ± temsil eden Entity'leri barÄ±ndÄ±ran katmandÄ±r.
+		- Base: Interface'den almÄ±ÅŸ olduÄŸu Ã¶zellikleri bÃ¼nyesine dahil eder.
+		- Entities: VeritabanÄ±nda olmasÄ±nÄ± istediÄŸimiz tablolarÄ± temsil eder.
 			- AppUser
 			- AppUserRole
 			- Category
@@ -14,34 +14,30 @@
 
 
 
-		- Enums: tablolarda kullanılacak sabitleri temsil eder.
-		- Interfaces: Bütün classlara öncülük edek özellikleri barındırır.
+		- Enums: tablolarda kullanÄ±lacak sabitleri temsil eder.
+		- Interfaces: BÃ¼tÃ¼n classlara Ã¶ncÃ¼lÃ¼k edek Ã¶zellikleri barÄ±ndÄ±rÄ±r.
 
-	- DAL (Data Access Layer): Veritabanına ulaşım katmanını temsil eder. Veritabanı ile ilgili nesnelerimiz, tasarım desenleri, Entity gibi varlıklar bu katman içerisinde kullanılmalıdır.
-		- Context: Veritabanı nesnesini temsil eder.
+	- DAL (Data Access Layer): VeritabanÄ±na ulaÅŸÄ±m katmanÄ±nÄ± temsil eder. VeritabanÄ± ile ilgili nesnelerimiz, tasarÄ±m desenleri, Entity gibi varlÄ±klar bu katman iÃ§erisinde kullanÄ±lmalÄ±dÄ±r.
+		- Context: VeritabanÄ± nesnesini temsil eder.
 
 
-	- BLL (Business Logic Layer): İş mantığı katmanı olarak kullanılacaktır. Kullanıcın talep ettiği işlemler ilk olarak bu katman tarafından karşılanacak. Repository ve Service bu katman içerisinde oluşturulacak.
+	- BLL (Business Logic Layer): Ä°ÅŸ mantÄ±ÄŸÄ± katmanÄ± olarak kullanÄ±lacaktÄ±r. KullanÄ±cÄ±n talep ettiÄŸi iÅŸlemler ilk olarak bu katman tarafÄ±ndan karÅŸÄ±lanacak. Repository ve Service bu katman iÃ§erisinde oluÅŸturulacak.
 		--Repositories
 			--Abstracts
 				--BaseAbstracts
-					-IRepository: Bu interface bütün işlemlere öncülük edecek metotların kurallarını barındırmaktadır. (CRUD) Interface dışarıdan bir T alır.
+					-IRepository: Bu interface bÃ¼tÃ¼n iÅŸlemlere Ã¶ncÃ¼lÃ¼k edecek metotlarÄ±n kurallarÄ±nÄ± barÄ±ndÄ±rmaktadÄ±r. (CRUD) Interface dÄ±ÅŸarÄ±dan bir T alÄ±r.
 		--Concretes
 			--BaseConcrete
-				--BaseRepository: IRepository'den miras alara eylemleri (metotları) somut hale dönüştüren class.. Dıaşrıdan bir T alır
+				--BaseRepository: IRepository'den miras alara eylemleri (metotlarÄ±) somut hale dÃ¶nÃ¼ÅŸtÃ¼ren class.. DÄ±aÅŸrÄ±dan bir T alÄ±r
 
-	Yukarıdaki tanımlamalarda bulunan T tipleri Ayrı bir servis oluşturulacak. Bu kuralları bünyesine alır. Bu kurallara göre spesifik eylemleri gerçekleştirir. Örneğin CategoryService'de gerçekleştirildiği gibi. (Bknz. CategoryService)
+	YukarÄ±daki tanÄ±mlamalarda bulunan T tipleri AyrÄ± bir servis oluÅŸturulacak. Bu kurallarÄ± bÃ¼nyesine alÄ±r. Bu kurallara gÃ¶re spesifik eylemleri gerÃ§ekleÅŸtirir. Ã–rneÄŸin CategoryService'de gerÃ§ekleÅŸtirildiÄŸi gibi. (Bknz. CategoryService)
 			
 
-	- UI (User Interface): Sunum katmanını temsil eder. 
-		- MVC projesi bu katman içerisinde oluşturulacak. 
+	- UI (User Interface): Sunum katmanÄ±nÄ± temsil eder. 
+		- MVC projesi bu katman iÃ§erisinde oluÅŸturulacak. 
 		- Console App
 		- WebApi
 
-    - Common (Ortak Katman): İlerleyen etaplarda projenin daha esnek olabilmesi için her bir katmanda ortak olarak kullanılacak işlemler/yapılar bu katmanda yer almaktadırlar.
-		--ImageHelper: İeçrisinde bulunan static metot vasıtasıyla dıaşrıdan iletilen dosyanın bir görsel olup olmadığını kontrol edilmesini ardından bu görselin projeye dahil edilmesini gerçekleştirir.
+    - Common (Ortak Katman): Ä°lerleyen etaplarda projenin daha esnek olabilmesi iÃ§in her bir katmanda ortak olarak kullanÄ±lacak iÅŸlemler/yapÄ±lar bu katmanda yer almaktadÄ±rlar.
+		--ImageHelper: Ä°eÃ§risinde bulunan static metot vasÄ±tasÄ±yla dÄ±aÅŸrÄ±dan iletilen dosyanÄ±n bir gÃ¶rsel olup olmadÄ±ÄŸÄ±nÄ± kontrol edilmesini ardÄ±ndan bu gÃ¶rselin projeye dahil edilmesini gerÃ§ekleÅŸtirir.
 
-
-#SMTP Ayarları
-Email: yzl3172@outlook.com
-Pass: YzlKadikoy--
